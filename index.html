@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+   
+
+    p { margin-bottom: 0.5rem; }
+    hr { 
+      margin-top: 0.75rem; 
+      margin-bottom: 0.75rem; 
+    }
+    
+    kbd, code, a { 
+      color: #1e40af; 
+      font-family: monospace; 
+      background-color: #f1f5f9; 
+      padding-left: 0.25rem; 
+      padding-right: 0.25rem; 
+      border-radius: 0.25rem; 
+    }
+  </style>
+
+  <link rel="shortcut icon" href="./img/carrito-mercado.jpg" type="image/jpeg">
+  <title>🍅 Lista Compras</title>
+</head>
+
+<body class="bg-[#35013F] min-h-screen w-full py-8 px-4 sm:px-6 md:px-8 text-slate-900 font-sans text-sm antialiased select-none overflow-x-hidden">
+  
+  <div class="w-full max-w-7xl mx-auto">
+    <h1 class="font-bold text-3xl mb-6 text-white drop-shadow-sm text-center md:text-left">🍅 Lista de Compras</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start w-full">
+      
+      <div class="md:col-span-2 bg-[#2B2A4C] border border-gray-300 p-4 sm:p-5 rounded-2xl space-y-4 w-full shadow-md">   
+
+        <!-- 1. Formulario de ingreso -->
+        <form id="form-ingreso" class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-[#EEEEEE] p-4 rounded-xl border border-slate-200/60 shadow-xs items-end">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1" for="producto-input">Producto:</label>
+            <input class="w-full border border-slate-600 px-3 py-1.5 rounded-lg bg-white outline-none focus:border-slate-600 text-sm text-slate-900" type="text" id="producto-input" placeholder="Ej: Pan" required>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1" for="cantidad-input">Cantidad:</label>
+            <input class="w-full border border-slate-600 px-3 py-1.5 rounded-lg bg-white outline-none focus:border-slate-600 text-sm text-slate-900" type="number" id="cantidad-input" min="1" value="1" required>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1" for="precio-input">Precio Est. (€):</label>
+            <input class="w-full border border-slate-600 px-3 py-1.5 rounded-lg bg-white outline-none focus:border-slate-600 text-sm text-slate-900" type="number" id="precio-input" min="0" step="0.01" placeholder="Ej: 1.50" required>
+          </div>
+          <button type="submit" id="btn-agregar" class="w-full rounded-lg bg-black border border-slate-900 text-white font-bold py-2 text-sm cursor-pointer transition hover:bg-red-700 active:scale-95 shadow-sm">Agregar</button>
+        </form>
+
+       
+          <button type="button" id="btn-eliminar-pos" class="rounded-lg bg-violet-400 border border-amber-300 px-4 py-1.5 text-xs sm:text-sm font-bold cursor-pointer transition hover:bg-gray-400 active:scale-95 text-yellow-300 flex-1 sm:flex-initial text-center mx-4">🗑️ Eliminar por Posición</button>
+          <button type="button" id="btn-calcular" class="rounded-lg bg-blue-100 border border-blue-400 px-4 py-1.5 text-xs sm:text-sm font-bold cursor-pointer transition hover:bg-blue-400 active:scale-95 text-blue-800 flex-1 sm:flex-initial text-center mx-4">💰 Calcular estimado a gastar</button>
+          <button type="button" id="btn-vaciar" class="rounded-lg bg-rose-100 border border-rose-400 px-4 py-1.5 text-xs sm:text-sm font-black cursor-pointer transition hover:bg-green-400 active:scale-95 text-rose-700 shadow-xs flex-1 sm:flex-initial text-center mx-4">🧹 Vaciar Lista</button>
+        
+        
+        <div class="border border-slate-200 rounded-xl p-4 sm:p-5 bg-[#EEEEEE] min-h-[220px] shadow-xs">  
+          <ol start="0" id="lista-compras" class="space-y-2 list-decimal list-outside ml-4 font-semibold text-slate-500"></ol>
+        </div>
+        
+        <p class="italic text-sm font-bold text-green-500 bg-gray-300 p-3 rounded-xl border border-slate-200 shadow-xs" id="mensaje">&nbsp;</p>
+
+      </div> 
+
+      <div class="text-center p-4 flex flex-col items-center justify-center min-h-[350px] bg-white/10 rounded-2xl border border-white/10 backdrop-blur-xs shadow-xs">
+        
+        <img class="w-full max-w-[460px] h-auto object-contain drop-shadow-md rounded-xl transition-transform duration-300 hover:scale-105" 
+             src="./img/carrito-mercado.jpg" 
+             alt="carrito">
+        
+        <p class="text-xs sm:text-sm font-bold text-white tracking-wide mt-5 bg-black/20 px-4 py-2 rounded-full shadow-xs">
+          Número de productos en el carrito: <span class="font-black text-yellow-300 ml-1" id="num-prod">0</span>
+        </p>
+      </div> 
+
+    </div> 
+  </div>
+
+  <script src="./js/clase-producto.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
